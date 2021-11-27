@@ -1,0 +1,18 @@
+{
+  "login-detail": [
+    {
+      "email": "Thines@cts.com",
+      "password": "thinesh"
+    }
+  ],  
+  
+  "users-profile": [
+    {
+      "name": "Thinesh",
+      "age": 25,
+      "emailId": "Thinesh@cts.com",
+      "password": "thinesh",
+      "id": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <h4 *ngIf="isCancelled" style="color: green; font-size: larger; font-weight: bold;">Flight Cancelled Successfully</h4>
+        <table class="table">
+            <thead>
+                <tr style="font-size: medium;" >
+                    <th>S.No</th>
+                    <th>Airline Name</th>
+                    <th>Flight ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Ticket Cost (₹)</th>
+                    <th>Depature Date</th>
+                    <th>Depature Time</th>
+                    <th>Arrival Date</th>
+                    <th>Arrival Time</th>
+                    <th>Total Seats</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let flight of ScheduledAllFlightDetails; let i=index"  [class.highlighter]="!flight.status" [class.available]="flight.status" style="font-size: medium;">
+                    <td>{{i+1}}</td>
+                    <td>{{flight.airlineName}}</td>
+                    <td>{{flight.flightNumber}}</td>
+                    <td>{{flight.from}}</td>
+                    <td>{{flight.to}}</td>
+                    <td>{{flight.price}}</td>
+                    <td>{{flight.depatureDate}}</td>
+                    <td>{{flight.dTime}}</td>
+                    <td>{{flight.arivalDate}}</td>
+                    <td>{{flight.aTime}}</td>
+                    <td>{{flight.totalSeats}}</td>
+                    <td *ngIf="flight.status">Scheduled</td>
+                    <td *ngIf="!flight.status">Cancelled</td>
+                    <td>
+                        <button style="margin-left: 5px;" [disabled]="!flight.status" 
+                        (click)="deleteScheduledFlight(flight)" [class.highlighterButton]="!flight.status">Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

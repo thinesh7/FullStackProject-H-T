@@ -1,0 +1,14 @@
+<div class="mainContainer">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav innerNavBar">
+        <label style="color: white; font-size: large; margin-left: -150px;" >Welcome &nbsp;</label> <label style="color: white; font-size: large;" >{{name}}</label>
+        <a class="nav-item nav-link active" routerLink="searchFlight" style="margin-left: 100px;">Book Flight <span
+            class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" routerLink="booking-history">Booking History</a>
+        <a class="nav-item nav-link" routerLink="manage-booking">Manage Bookings</a>
+        <a class="nav-item nav-link" (click)="logout()">LogOut</a>
+      </div>
+    </div>
+  </nav>
+</div>

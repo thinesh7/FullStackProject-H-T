@@ -1,0 +1,18 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <div class="inner-box">
+            <h2 style="color: green; font-weight: bolder;">Payment Successfully Completed</h2>
+            <label>Name :</label> {{result.name}}
+            <label style="margin-left: 7px;">Email Id : </label> {{result.email}}
+            <label style="margin-left: 7px;">Ticket Price : </label> {{result.billingAmmount}} INR
+
+            <div *ngFor="let passenger of result.passengersList">
+                <label style="margin-left: 7px;">Name :</label> {{passenger.pName}}
+                <label style="margin-left: 7px;">Trip :</label> {{passenger.trip}}
+                <label style="margin-left: 7px;">Seat :</label> {{passenger.onwardSeat}}
+                <label style="margin-left: 7px;">PNR :</label> <label style="color: green; font-size: large; margin-left: 7px;"> {{passenger.pnr}}</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info subColor" (click)="goHome()" style="margin-top: 20px;">Click Here to Book More Tickets</button>
+    </div>
+</div>

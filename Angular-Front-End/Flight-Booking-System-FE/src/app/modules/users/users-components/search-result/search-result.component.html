@@ -1,0 +1,51 @@
+<div class="container" style="position: relative; top: 50px;">
+    <div class="row">
+        <div class="col-md-5 leftformBox formBox">
+            <p style="color: black; font-weight: bolder;font-size: larger; text-align: center;">One Way</p>
+            <span
+                style="color: black; font-weight: bolder;font-size: medium; margin-left: 50px; padding-bottom: 4px;">Source:
+                {{searchDetails.sourcePlace}}</span>
+            <span
+                style="color: black; font-weight: bolder;font-size: medium; margin-left: 40px; padding-bottom: 4px;">Destination:
+                {{searchDetails.destinationPlace}}
+            </span>
+            <br><br>
+            <a *ngFor="let trip1 of oneWaySR" class="inner" (click)="flightTrip1Selected(trip1)">
+                <table style="text-align: center; padding: 10px;" [class.highlighter]="selectedTrip1.flightId == trip1.flightId">
+                    <tr>
+                        <td><img [src]="trip1.logoUrl" width="43px" height="43px"></td>
+                        <td><span>{{trip1.airlineName}}</span></td>
+                        <td><span>{{trip1.time}}</span></td>
+                        <td><span>{{trip1.price}} INR</span></td>
+                    </tr>
+                </table>
+            </a>
+        </div>
+        <div *ngIf="isRoundTrip">
+            <div class="col-md-5 rightformBox formBox">
+
+                <p style="color: black; font-weight: bolder;font-size: larger; text-align: center;">Round Trip</p>
+                <span
+                    style="color: black; font-weight: bolder;font-size: medium; margin-left: 50px; padding-bottom: 4px;">Source:
+                    {{searchDetails.destinationPlace}}</span>
+                <span
+                    style="color: black; font-weight: bolder;font-size: medium; margin-left: 40px; padding-bottom: 4px;">Destination:
+                    {{searchDetails.sourcePlace}}</span>
+                <br> <br>
+                <a *ngFor="let trip2 of roundTrip" class="inner" (click)="flightTrip2Selected(trip2)">
+                    <table style="text-align: center;padding: 6px" [class.highlighter]="selectedTrip2.flightId == trip2.flightId">
+                        <tr>
+                            <td ><img [src]="trip2.logoUrl" width="43px" height="43px"></td>
+                            <td><span>{{trip2.airlineName}}</span></td>
+                            <td><span>{{trip2.time}}</span></td>
+                            <td><span>{{trip2.price}}</span></td>
+                        </tr>
+                    </table>
+                </a>
+            </div>
+        </div>
+    </div>
+    <p style="margin-top: 30px; margin-left: 40%; color: black; padding: 3px; font-weight: bolder;font-size: larger;"> Total Price:
+        &nbsp; {{total1+total2}} ₹</p>
+    <button type="button" class="btn btn-info subButton" (click)="submit()" [disabled]="!okToPass" >Proceed for Booking</button>
+</div>

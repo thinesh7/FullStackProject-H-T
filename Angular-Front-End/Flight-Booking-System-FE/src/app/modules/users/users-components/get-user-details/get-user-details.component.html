@@ -1,0 +1,90 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <form [formGroup]="getDetailsForm" (ngSubmit)="submitForm()">
+            <!-- Name: -->
+            <div style="margin-top: 0px;">
+                <label>Name &nbsp;</label>
+                <input type="text" formControlName="name" style="margin-left: 10px;" readonly="readonly">
+            </div>
+            <!-- Email ID: -->
+            <div style="margin-top: 3px;">
+                <label>Email ID</label>
+                <input type="text" formControlName="email" style="margin-left: 10px;" readonly="readonly">
+            </div>
+
+            <button type="button" (click)="addPassenger()"
+                style="margin-left: 60%; padding: 5px; background-color: #0061A8; color: white; border-radius: 5px 5px; border: 1px solid black;">Add
+                Passenger
+            </button>
+
+            <div formArrayName="passengersList">
+                <div class="row passenger" *ngFor="let pasngr of getPassenegrArray().controls; let i=index;">
+                    <div [formGroupName]="i">
+                        <label> Passenger Name</label>
+                        <input class="move" type="text" formControlName="pName">
+
+                        <label class="move">Gender</label>
+                        <select class="move" formControlName="pGender">
+                            <option value="Male"> Male </option>
+                            <option value="Female">Female</option>
+                        </select>
+
+                        <label class="move">Age</label>
+                        <input type="number" max="100" min="2" formControlName="age">
+
+                        <label class="move">Select Seat For Onward Journey</label>
+                        <select class="move" formControlName="onwardSeat">
+                            <option value="3B">12B</option>
+                            <option value="4B">23B</option>
+                            <option value="5B">54B</option>
+                            <option value="5B">75B</option>
+                            <option value="5B">86B</option>
+                        </select>
+
+                        <span *ngIf="!!returnDate">
+                            <label class="move">Select Seat For Return Journey</label>
+                            <select class="move" formControlName="returnSeat">
+                                <option value="7B">78C</option>
+                                <option value="8B">66D</option>
+                                <option value="8B">88D</option>
+                                <option value="8B">18D</option>
+                                <option value="8B">48D</option>
+                            </select>
+                        </span>
+
+                        <label class="move">Opt Meal</label>
+                        <select class="move" formControlName="optMeal">
+                            <option value="Veg">Veg</option>
+                            <option value="Non Veg">Non Veg</option>
+                        </select>
+
+                        <button type="button" class="move" (click)="removePassenger(i)">Remove Passenger</button>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-info subColor" (click)="calculatePrice()" [disabled]="isDiscountApplied" >Calculate Price</button>
+            <br>
+            <div *ngIf="showCalculate">
+
+                <p style="margin-top: 20px; margin-left: 2%; color: red; font-weight: bolder;font-size: larger;">
+                    Total Price:
+                    &nbsp; {{this.getDetailsForm.value.billingAmmount}}  ₹
+                </p>
+
+                <div style="margin-top: 10px;">
+                    <label>Discount</label>
+                    <input type="text" formControlName="discount">
+                    <button type="button" [disabled]="!getDetailsForm.controls.discount.value"
+                        class="btn btn-info subColor" (click)="applyDiscount()"
+                        style="margin-left:15px; margin-bottom: 2px;" *ngIf="!isDiscountApplied">Apply</button>
+                    <div *ngIf="discountValidation">
+                        <h3 style="color:green; font-size: large;" *ngIf="isDiscountApplied">Discount Applied</h3>
+                        <h3 style="color:red; font-size: large;" *ngIf="!isDiscountApplied">{{incorret}}</h3>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-info subColor" [disabled]="!oktoCheckout">Book Now</button>
+        </form>
+    </div>
+</div>

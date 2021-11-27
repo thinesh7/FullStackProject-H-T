@@ -1,0 +1,37 @@
+<div class="myFormBody">
+    <div class="myformContainer">
+        <form [formGroup]="discountForm">
+            <h3 *ngIf="discountApplied" style="color: green; font-weight: 800;">Discount Added</h3>
+            <h3 *ngIf="isAlreadyAvailable" style="color: red; font-weight: 800;">Discount Already Available</h3>
+            <div class="element">
+                <label style="padding-right: 30px;">Discount Code</label>
+                <input type="text" placeholder="Enter Discount Code" formControlName="discountCode">
+            </div>
+            <div class="element">
+                <label style="padding-right: 30px;">Discount Percentage</label>
+                <input type="number" placeholder="Enter Discount Code" formControlName="discountPercentage" min="0"
+                    max="25">
+            </div>
+            <button type="submit" class="btn btn-info subColor" [disabled]="discountForm.invalid"
+                (click)="addDiscount()">Submit</button>
+        </form>
+        <div class="tab">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Discount Code</th>
+                        <th>Discount Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let discount of discountList; let i=index" style="color: white;">
+                        <td>{{i+1}}</td>
+                        <td>{{discount.discountCode}}</td>
+                        <td>{{discount.discountPercentage}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
